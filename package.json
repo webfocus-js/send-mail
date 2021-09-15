@@ -1,0 +1,18 @@
+{
+  "name": "email-configuration",
+  "version": "0.0.1",
+  "description": "Creates sendMail function on webfocusApp.",
+  "main": "index.js",
+  "keywords": [
+    "webfocus",
+	"utilities",
+	"mail",
+	"nodemailer"
+  ],
+  "author": "diogoalmiro",
+  "license": "ISC",
+  "dependencies": {
+    "@webfocus/component": "^0.0.4",
+    "nodemailer": "^6.6.3"
+  }
+}

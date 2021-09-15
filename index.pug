@@ -1,0 +1,23 @@
+extends /layouts/main
+
+block main
+    form.container(method="post",action=apibaseurl)
+      label.form-text(for="host") Hostname:  
+      input.form-control#host(type="text", name="host", value=component.emailConfiguration.host)
+      label.form-text(for="port") Port:  
+      input.form-control#port(type="text", name="port", value=component.emailConfiguration.port)
+      label.form-text(for="user") Username:  
+      input.form-control#user(type="text", name="auth.user", value=component.emailConfiguration.auth.user)
+      label.form-text(for="pass") Password:
+      input.form-control#pass(type="password", name="auth.pass", value=component.emailConfiguration.auth.pass)
+      label.form-text(for="secure") Secure Connection:
+      input.form-checkbox(type="checkbox", name="secure", checked=component.emailConfiguration.secure)
+      input.form-control.btn.btn-primary(type="submit", value="Save")
+      hr
+    form.container(method="post",action=apibaseurl+'test')
+      .input-group
+        input.form-control#from(type="text", name="from", placeholder="From")
+        input.form-control#to(type="text", name="to", placeholder="To")
+      input.form-control#subject(type="text", name="subject", placeholder="Subject", value="Webfocus Email Componennt Test")
+      textarea.form-control#text(name="text", placeholder="Message Text") This component allows the application to send emails. use `app.sendMail()`
+      input.form-control.btn.btn-warning(type="submit", value="Send Test Email")
