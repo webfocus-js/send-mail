@@ -1,5 +1,5 @@
 {
-  "name": "email-configuration",
+  "name": "@webfocus/send-mail",
   "version": "0.0.1",
   "description": "Creates sendMail function on webfocusApp.",
   "main": "index.js",
