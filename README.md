@@ -1,4 +1,4 @@
-# Webfocus Util
+# Webfocus Send Mail
 
 This is a WebfocusComponent implementation with some utilities for other [@webfocus/component](https://www.npmjs.com/package/@webfocus/component) implementations.
 
