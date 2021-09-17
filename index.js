@@ -23,7 +23,7 @@ component.on("webfocusApp", (app) => {
     //https://nodemailer.com/message/
     app.sendMail = async (message) => {
         let transportSettings = await readEmailConfig();
-        let transporter = nodemailer.createTransport(transportSettings);
+        let transporter = nodemailer.createTransport(transportSettings, { from: `no-reply@${transportSettings.host}` });
         return transporter.sendMail(message)
     }
 })
