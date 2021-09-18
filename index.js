@@ -1,17 +1,17 @@
-const component = module.exports = require('@webfocus/component')("Email Configuration","Set email server and addresses.");
+const component = module.exports = require('@webfocus/component')("Mail Configuration","Set mail server and addresses.");
 const path = require("path")
 const fs = require("fs/promises");
 const nodemailer = require("nodemailer")
 
-let EMAIL_CONFIG = path.join(component.folder, "email-configuration.json");
+let MAIL_CONFIG = path.join(component.folder, "email-configuration.json");
 
-const setMailConfig = component.setMailConfig = (config) => fs.writeFile(EMAIL_CONFIG, JSON.stringify(config))
+const setMailConfig = component.setMailConfig = (config) => fs.writeFile(MAIL_CONFIG, JSON.stringify(config))
 
 const readMailConfig = component.readMailConfig = () => fs
-    .readFile(EMAIL_CONFIG)
+    .readFile(MAIL_CONFIG)
     .then(s => JSON.parse(s))
-    .then( c => component.emailConfiguration = c )
-    .catch(_ => component.emailConfiguration = {
+    .then( c => component.mailConfiguration = c )
+    .catch(_ => component.mailConfiguration = {
         host: "",
         port: "",
         auth: {

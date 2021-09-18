@@ -3,15 +3,15 @@ extends /layouts/main
 block main
     form.container(method="post",action=apibaseurl)
       label.form-text(for="host") Hostname:  
-      input.form-control#host(type="text", name="host", value=component.emailConfiguration.host)
+      input.form-control#host(type="text", name="host", value=component.mailConfiguration.host)
       label.form-text(for="port") Port:  
-      input.form-control#port(type="text", name="port", value=component.emailConfiguration.port)
+      input.form-control#port(type="text", name="port", value=component.mailConfiguration.port)
       label.form-text(for="user") Username:  
-      input.form-control#user(type="text", name="auth.user", value=component.emailConfiguration.auth.user)
+      input.form-control#user(type="text", name="auth.user", value=component.mailConfiguration.auth.user)
       label.form-text(for="pass") Password:
-      input.form-control#pass(type="password", name="auth.pass", value=component.emailConfiguration.auth.pass)
+      input.form-control#pass(type="password", name="auth.pass", value=component.mailConfiguration.auth.pass)
       label.form-text(for="secure") Secure Connection:
-      input.form-checkbox(type="checkbox", name="secure", checked=component.emailConfiguration.secure)
+      input.form-checkbox(type="checkbox", name="secure", checked=component.mailConfiguration.secure)
       input.form-control.btn.btn-primary(type="submit", value="Save")
       hr
     form.container(method="post",action=apibaseurl+'test')
