@@ -5,31 +5,33 @@ const nodemailer = require("nodemailer")
 
 let EMAIL_CONFIG = path.join(component.folder, "email-configuration.json");
 
-function readEmailConfig(){
-    return fs.readFile(EMAIL_CONFIG).then(s => JSON.parse(s)).then( c => component.emailConfiguration = c ).catch(_ => {
-        component.emailConfiguration = {
-            host: "",
-            port: "",
-            auth: {
-                user: "",
-                pass: ""
-            }
+const setMailConfig = component.setMailConfig = (config) => fs.writeFile(EMAIL_CONFIG, JSON.stringify(config))
+
+const readMailConfig = component.readMailConfig = () => fs
+    .readFile(EMAIL_CONFIG)
+    .then(s => JSON.parse(s))
+    .then( c => component.emailConfiguration = c )
+    .catch(_ => component.emailConfiguration = {
+        host: "",
+        port: "",
+        auth: {
+            user: "",
+            pass: ""
         }
     })
-}
 
 component.on("webfocusApp", (app) => {
     component.webfocusApp = app
     //https://nodemailer.com/message/
     app.sendMail = async (message) => {
-        let transportSettings = await readEmailConfig();
-        let transporter = nodemailer.createTransport(transportSettings, { from: `no-reply@${transportSettings.host}` });
+        let transportSettings = await readMailConfig();
+        let transporter = nodemailer.createTransport(transportSettings, { from: `no-reply@${transportSettings.host}` }); // Adds a default from header (overwritable)
         return transporter.sendMail(message)
     }
 })
 
 component.staticApp.get("/", (req, res, next) => {
-    readEmailConfig().then(_ => next()).catch(next)
+    readMailConfig().then(_ => next()).catch(next) // Next without object otherwise it is consider an error by express.
 })
 
 component.app.post("/", (req, res, next) => {
@@ -42,7 +44,7 @@ component.app.post("/", (req, res, next) => {
         },
         secure: "secure" in req.body
     };
-    fs.writeFile(EMAIL_CONFIG, JSON.stringify(settings)).then(_ => res.redirect(req.headers.referer)).catch(next)
+    setMailConfig(settings).then(_ => res.redirect(req.referer.headers)).catch(next)
 })
 
 component.app.post("/test", (req, res, next) => {

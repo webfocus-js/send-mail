@@ -1,13 +1,13 @@
 {
   "name": "@webfocus/send-mail",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Creates sendMail function on webfocusApp.",
   "main": "index.js",
   "keywords": [
     "webfocus",
-	"utilities",
-	"mail",
-	"nodemailer"
+    "utilities",
+    "mail",
+    "nodemailer"
   ],
   "author": "diogoalmiro",
   "license": "ISC",
