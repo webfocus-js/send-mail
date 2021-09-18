@@ -44,7 +44,7 @@ component.app.post("/", (req, res, next) => {
         },
         secure: "secure" in req.body
     };
-    setMailConfig(settings).then(_ => res.redirect(req.referer.headers)).catch(next)
+    setMailConfig(settings).then(_ => res.redirect(req.headers.referer)).catch(next)
 })
 
 component.app.post("/test", (req, res, next) => {
